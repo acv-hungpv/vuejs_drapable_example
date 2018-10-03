@@ -1,0 +1,172 @@
+<div id="app">
+  {{ message }}
+</div>
+<div id="main">
+    <h1>Vue Dragable For</h1>
+
+    <div class="drag">
+        <h2>Draggable</h2>
+        <draggable :list="list" class="dragArea">
+            <div v-for="element in list">{{element.name}}</div>
+         </draggable>
+     </div>
+
+    <div class="normal">
+        <h2>Normal v-for</h2>
+        <div class="dragArea">
+            <div v-for="element in list">{{element.name}}</div>
+         </div>
+     </div>
+
+    <button @click="add">Add</button>
+    <button @click="replace">Replace</button>
+</div>
+
+<div id="main2">
+  <h1>Vue Draggable</h1>
+  <div class="drag">
+    <h2>List 1 Draggable</h2>
+      <draggable v-model="list" class="dragArea" :options="{group:'people'}">
+        <div v-for="element in list">{{element.name}}</div>
+      </draggable>
+    <h2>List 2 Draggable</h2>
+      <draggable v-model="list2" class="dragArea" :options="{group:'people'}">
+      <div v-for="element in list2">{{element.name}}</div>
+      </draggable>
+  </div>
+
+   <div class="normal">
+          <h2>List 1 v-for</h2>
+          <div>
+              <div v-for="element in list">{{element.name}}</div>
+           </div>
+
+          <h2>List 2 v-for</h2>
+          <div>
+              <div v-for="element in list2">{{element.name}}</div>
+          </div>
+      </div>
+</div>
+
+<div id="main3">
+  <h1>Vue Draggable</h2>
+  <div class="drag">
+    <h2>List 1 Draggable</h2>
+      <draggable v-model="list" class="dragArea" :options="{group:{ name:'people',  pull:'clone', put:false }}">
+        <div v-for="(element, index) in list" :key="index">{{element.name}}</div>
+      </draggable>
+    <h2>List 2 Draggable</h2>
+      <draggable v-model="list2" class="dragArea" :options="{group:'people'}">
+        <div v-for="(element, index) in list2" :key="index">{{element.name}}</div>
+      </draggable>
+  </div>
+
+ <div class="normal">
+        <h2>List 1 v-for</h2>
+        <div>
+            <div v-for="element in list">{{element.name}}</div>
+         </div>
+
+        <h2>List 2 v-for</h2>
+        <div>
+            <div v-for="element in list2">{{element.name}}</div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid" id="app2">
+
+  <div v-for="machine in machines">
+
+    <div class="container-fluid machine-contents">
+
+      <draggable v-model="machine.jobs">
+        <transition-group name="list-complete">
+          <div v-for="(job, index) in machine.jobs"
+               v-bind:key="job.jobNumber"
+               class="list-complete-item"
+          >
+            <div>
+              {{ job.jobNumber }}
+            </div>
+            <div>
+              <br>
+              <button v-on:click="removeJob(machine.id, job.jobNumber, machine.jobs, index)">Remove</button>
+            </div>
+          </div>
+        </transition-group>
+      </draggable>
+
+    </div>
+
+  </div>
+
+</div>
+
+fafasgfaga
+<div>
+    <div type="text/x-template" id="tab">
+      <table>
+      <thead>
+        <tr>
+          <th>Actual table with tr/td tags</th>
+        </tr>
+      </thead>
+      <draggable v-model="list" :element="'tbody'">
+        <tr v-for="(person, index) in list" :key="person">
+          <local-td :item="person"></local-td>
+        </tr>
+      </draggable>
+    </table>
+    </div>
+
+     <div type="text/x-template" id="tr">
+        {{item.name}}
+    </div>
+
+  <div id="app">
+     <local-table v-model="people"></local-table>
+  </div>
+
+</div>
+
+
+
+<div id="main4">
+  <h1>Vue Draggable</h2>
+  <div class="drag">
+    <h2>List 1 Draggable</h2>
+      <draggable v-model="list" class="dragArea" :options="{group:'people'}">
+        <div v-for="(element,index) in list">{{element.name}}
+          <button @click="remove(index)">X
+          </button>
+        </div>
+      </draggable>
+  </div>
+</div>
+
+
+<style scoped>
+table{ border: 1px solid black; margin: 2em; }
+.normal {
+    background-color: grey;
+}
+.drag {
+    background-color: green;
+}
+.dragArea{
+     min-height: 10px;
+}
+.list-complete-item {
+  padding: 4px;
+  margin-top: 4px;
+  border: solid 1px;
+  transition: all 1s;
+}
+
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+}
+</style>
