@@ -147,8 +147,65 @@ fafasgfaga
   </div>
 </div>
 
+<div id = 'app11'>
+  <button v-on:click="increase">Click me</button>
+  <p>{{count}}</p>
+  <p v-on:mousemove="updatecoordinates">CoordinatesL: {{x}}/{{y}} <span v-on:mousemove.stop>DEAD SPOT</span></p>
+  <input type="text" v-on:keyup.enter.space="alertme">
+</div>
+
+<div id = 'app12'>
+  <input type="text" v-model="name">
+  <p>{{name}}</p>
+</div>
+
+<div id = 'app13'>
+  <button v-on:click="count++">Increase</button>
+  <button v-on:click="count--">Decrease</button>
+  <button v-on:click="secondcount++">Increase second</button>
+  <p>counter: {{count}} | {{secondcount}}</p>
+  <p>Result: {{result()}} | {{output }}</p>
+</div>
+
+<div id = 'app14'>
+  <div class='demo' @click="attachRed = !attachRed" :class="divClasses"></div>
+  <div class='demo' :class="{red: attachRed}"></div>
+
+  <div class='demo' :class="[color, {red: attachRed}]"></div>
+  <hr>
+  <input type="text" v-model="color">
+</div>
+
+<div id='app15'>
+  <my-cmp></my-cmp>
+  <hr>
+  <my-cmp></my-cmp>
+</div>
+
+<div id='app15_2'>
+  <my-cmp></my-cmp>
+  <hr>
+  <my-cmp></my-cmp>
+</div>
 
 <style scoped>
+.demo {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  display: inline-block;
+  margin: 10px;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+
 table{ border: 1px solid black; margin: 2em; }
 .normal {
     background-color: grey;

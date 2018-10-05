@@ -20,6 +20,7 @@
 
 import Vue from 'vue/dist/vue.esm'
 import draggable from 'vuedraggable'
+
 export default {
   components: { draggable },
   data: function () {
@@ -232,9 +233,104 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  new Vue({
+    el: '#app11',
+    data: {
+      count: 0,
+      x: 0,
+      y: 0
+    },
+    methods: {
+      increase: function(){
+        this.count ++;
+      },
+      updatecoordinates: function(event){
+        this.x = event.clientX;
+        this.y = event.clientY;
+      },
+      alertme: function(){
+        alert('Alert!')
+      }
+    }
 
+  })
+  new Vue({
+    el: '#app12',
+    data: {
+      name: 'max'
+    }
+  })
 
+  new Vue ({
+    el: '#app13',
+    data: {
+      count: 0,
+      secondcount: 0
+    },
+    methods: {
+      result: function(){
+        console.log('method');
+        return this.count > 5 ? 'greater than 5' : 'smaller than 5';
 
+      }
+    },
+    computed: {
+      output: function(){
+        console.log('computed')
+        return this.count > 5 ? 'greater than 5' : 'smaller than 5';
+      }
+    },
+    watch: {
+      count: function(value){
+        var vm = this
+        setTimeout(function(){
+          vm.count = 0
+        }, 2000);
+      }
+    }
+
+  })
+  new Vue ({
+    el: '#app14',
+    data: {
+      attachRed: false,
+      color: 'green'
+    },
+    computed: {
+      divClasses:function(){
+        return {
+          red: this.attachRed,
+          blue: !this.attachRed
+        }
+      }
+    }
+  })
+  Vue.component('my-cmp', {
+    data: function(){
+      return {
+        status: 'critical'
+      }
+    },
+    template: '<p>server status: {{status}}</p>'
+  })
+
+  var cmp = {
+    data: function(){
+      return {
+        status: 'critical'
+      }
+    },
+    template: '<p>server status: {{status}}</p>'
+  }
+  new Vue ({
+    el: '#app15',
+    components: {
+      'my-cmp': cmp
+    }
+  })
+  new Vue ({
+    el: '#app15_2'
+  })
 })
 
 
